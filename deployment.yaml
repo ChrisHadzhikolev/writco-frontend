@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  namespace: demo
+  labels:
+    app: writco-frontend
+  name: writco-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: writco-frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: writco-frontend
+    spec:
+      containers:
+        - image: krishum77/writco-frontend:latest
+          name: frontend
+          imagePullPolicy: Always
+          resources: {}
+          ports:
+            - containerPort: 80
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: writco-frontend
+  namespace: demo
+  labels:
+    run: writco-frontend
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: writco-frontend
+  type: LoadBalancer
