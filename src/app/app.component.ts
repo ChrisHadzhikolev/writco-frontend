@@ -10,19 +10,9 @@ import {Router} from "@angular/router";
 export class AppComponent implements OnInit{
   title = 'frontend';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private router: Router) {
   }
   async ngOnInit(): Promise<void> {
-    await this.authService.login("lmao", "xd").then(res=>{
-      console.log(res);
-    });
-  }
 
-  auth() {
-    this.router.navigate(["/auth/login"]);
-  }
-
-  dash() {
-    this.router.navigate(["/dashboard"]);
   }
 }
