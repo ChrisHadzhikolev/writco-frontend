@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { reject } from 'lodash'
 import {MainService} from "../main/main.service";
 import {AuthUser} from "../../models/user/user.model";
+import {catchError, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +87,7 @@ export class AuthService{
     });
   }
 
-  async login(email: string, password: string): Promise<any>{
+  async login(email: string, password: string): Promise<Observable<any>>{
     // return new Promise<any>(async (resolve, rejectLogin) => {
     const headers: HttpHeaders = this.BaseService.getHeaders();
     const url = this.BaseService.getUsersApiUrl() + `/user/login`;
@@ -95,16 +96,7 @@ export class AuthService{
       email,
       password
     };
-
-    await this.http.post(url, user, {headers}).subscribe((res: any) => {
-      if (res) {
-        console.log('Successfully got the token', res);
-        localStorage.setItem('token', res.data.token);
-        return true;
-      } else {
-        throw new Error('failed to authenticate')
-      }
-    });
+    return this.http.post(url, user, { headers });
     //   return this.http.post(url, user, {headers}).subscribe((res: any) => {
     //     if (res) {
     //       console.log('Successfully got the token', res);
