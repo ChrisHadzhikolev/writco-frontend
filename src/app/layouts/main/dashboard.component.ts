@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
+  templateUrl: './dashboard.component.html',
 })
-export class MainComponent {}
+export class DashboardComponent {}
