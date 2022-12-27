@@ -8,10 +8,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import {DashboardModule} from "./pages/dashboard/dashboard.module";
 import {AuthModule} from "./pages/auth/auth.module";
+import {AuthComponent} from "./layouts/auth/auth.component";
+import {DashboardComponent} from "./layouts/main/dashboard.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
