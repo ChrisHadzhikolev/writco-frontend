@@ -9,6 +9,8 @@ import {DashboardModule} from "./pages/dashboard/dashboard.module";
 import {AuthModule} from "./pages/auth/auth.module";
 import {AuthComponent} from "./layouts/auth/auth.component";
 import {DashboardComponent} from "./layouts/main/dashboard.component";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import {DashboardComponent} from "./layouts/main/dashboard.component";
     RouterModule,
     DashboardModule,
     AuthModule,
+    MatSelectModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
