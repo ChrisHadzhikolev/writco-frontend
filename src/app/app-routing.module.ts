@@ -11,6 +11,7 @@ import {AdminComponent} from "./layouts/admin/admin.component";
 import {CategoriesComponent} from "./pages/admin/categories/categories.component";
 import {CommentsComponent} from "./pages/admin/comments/comments.component";
 import {UserManagerComponent} from "./pages/admin/user-manager/user-manager.component";
+import {UnauthorizedComponent} from "./pages/admin/unauthorized/unauthorized.component";
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path: 'usermanagement',
         component: UserManagerComponent
+      },
+      {
+        path: 'unauthorized',
+        component: UnauthorizedComponent
       },
     ],
     // canActivate: []

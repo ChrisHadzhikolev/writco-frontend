@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-manager',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    const user = await this.authService.getUser();
+    // @ts-ignore
+    if(user.role !== "admin"){
+      this.router.navigate(["admin/unauthorized"])
+    }
   }
-
 }

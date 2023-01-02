@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {CategoriesComponent} from "./categories/categories.component";
 import {CommentsComponent} from "./comments/comments.component";
 import {UserManagerComponent} from "./user-manager/user-manager.component";
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 
@@ -12,6 +13,6 @@ import {UserManagerComponent} from "./user-manager/user-manager.component";
     CommonModule,
     RouterModule
   ],
-  declarations: [CategoriesComponent, CommentsComponent, UserManagerComponent]
+  declarations: [CategoriesComponent, CommentsComponent, UserManagerComponent, UnauthorizedComponent]
 })
 export class AdminModule {}
