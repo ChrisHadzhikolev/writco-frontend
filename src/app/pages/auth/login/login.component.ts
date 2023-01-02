@@ -22,10 +22,16 @@ export class LoginComponent implements OnInit{
   async submit() {
     if (this.form.valid) {
       await this.authService.login(this.form.value.email, this.form.value.password).then(res=>{
-        res.subscribe(ress=>{
-          localStorage.setItem("token", ress.data.token);
-          this.router.navigate(["/dashboard/basic"]);
+        res.subscribe(async ress=>{
           console.log(ress)
+          localStorage.setItem("token", ress.data.token);
+          const user = await this.authService.getUser();
+          // @ts-ignore
+          if (user.role !== "admin") {
+            this.router.navigate(["/dashboard/basic"]);
+          } else {
+            this.router.navigate(["/admin/usermanagement"]);
+          }
         }, err =>{
           if (err.error.statusCode === 400){
             this.toastr.error("Please, try again", "Wrong Credentials")
