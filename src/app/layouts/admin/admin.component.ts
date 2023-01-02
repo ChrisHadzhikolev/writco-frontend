@@ -18,7 +18,7 @@ export class AdminComponent {
   }
 
   userManagement() {
-    this.router.navigate(["admin/usermangement"]);
+    this.router.navigate(["admin/usermanagement"]);
   }
 
   logout() {

@@ -74,7 +74,7 @@ const routes: Routes = [
         component: CommentsComponent
       },
       {
-        path: 'user-manager',
+        path: 'usermanagement',
         component: UserManagerComponent
       },
     ],
