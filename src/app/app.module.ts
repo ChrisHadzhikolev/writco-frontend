@@ -11,12 +11,15 @@ import {AuthComponent} from "./layouts/auth/auth.component";
 import {DashboardComponent} from "./layouts/main/dashboard.component";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
+import {AdminComponent} from "./layouts/admin/admin.component";
+import {AdminModule} from "./pages/admin/admin.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import {MatButtonModule} from "@angular/material/button";
     HttpClientModule,
     RouterModule,
     DashboardModule,
+    AdminModule,
     AuthModule,
     MatSelectModule,
     MatButtonModule,

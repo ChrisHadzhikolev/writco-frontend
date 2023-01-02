@@ -5,22 +5,25 @@ import {AuthComponent} from "./layouts/auth/auth.component";
 import {BasicComponent} from "./pages/dashboard/basic/basic.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import {LoginComponent} from "./pages/auth/login/login.component";
+import {FeedComponent} from "./pages/dashboard/feed/feed.component";
+import {NewArticleComponent} from "./pages/dashboard/new-article/new-article.component";
+import {AdminComponent} from "./layouts/admin/admin.component";
+import {CategoriesComponent} from "./pages/admin/categories/categories.component";
+import {CommentsComponent} from "./pages/admin/comments/comments.component";
+import {UserManagerComponent} from "./pages/admin/user-manager/user-manager.component";
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    // loadComponent: () => import('./pages/auth/auth.component').then(x => x.AuthComponent),
     children: [
       {
         path: 'login',
         component: LoginComponent,
-        // loadComponent: () => import('./pages/auth/login/login.component').then(x => x.LoginComponent)
       },
       {
         path: 'register',
         component: RegisterComponent,
-        // loadComponent: () => import('./pages/auth/register/register.component').then(x => x.RegisterComponent)
       },
     ],
     // canActivate: []
@@ -33,10 +36,49 @@ const routes: Routes = [
         path: 'basic',
         component: BasicComponent
       },
+      {
+        path: 'feed',
+        component: FeedComponent
+      },
+      {
+        path: 'new',
+        component: NewArticleComponent
+      },
     ],
-    // loadChildren: () =>
-    //   import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
-    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+    ],
+    // canActivate: []
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'categories',
+        component: CategoriesComponent
+      },
+      {
+        path: 'comments',
+        component: CommentsComponent
+      },
+      {
+        path: 'user-manager',
+        component: UserManagerComponent
+      },
+    ],
+    // canActivate: []
   },
 ];
 
