@@ -12,6 +12,9 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -26,6 +29,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ReactiveFormsModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   declarations: [DashboardComponent, BasicComponent, NewArticleComponent, FeedComponent]
 })

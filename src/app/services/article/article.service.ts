@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { reject } from 'lodash'
 import {MainService} from "../main/main.service";
 import {Observable} from "rxjs";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,146 +15,65 @@ export class ArticleService{
   constructor(
     private router: Router,
     private http: HttpClient,
-    private BaseService: MainService,) {}
+    private BaseService: MainService,
+    private authService: AuthService) {}
 
   async getAllPublicArticles() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
+    const headers: HttpHeaders = this.BaseService.getHeaders(true);
+    const url = this.BaseService.getArticleApiUrl() + `/article/public/articles`;
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return this.http.get(url, {headers});
   }
 
-  async getArticleById() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
+  async getArticleById(id: string) {
+    const headers: HttpHeaders = this.BaseService.getHeaders(true);
+    const user = await this.authService.getUserId();
+    const url = this.BaseService.getArticleApiUrl() + `/${id}/author/${user}`;
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return this.http.get(url, {headers});
   }
 
-  async getArticleRating() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
+  async getArticleRating(id: string) {
+    const headers: HttpHeaders = this.BaseService.getHeaders(true);
+    const url = this.BaseService.getArticleApiUrl() + `/${id}/ratingValue`;
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return this.http.get(url, {headers});
   }
 
-  async getUserRating() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
+  async getUserRating(id: string) {
+    const headers: HttpHeaders = this.BaseService.getHeaders(true);
+    const user = await this.authService.getUserId();
+    const url = this.BaseService.getArticleApiUrl() + `/${id}/id/${user}/userId`;
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return this.http.get(url, {headers});
   }
 
   async createRating() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
-
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+   return 0;
   }
 
   async changeRating() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
-
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return 0;
   }
 
   async changePrivacyStatus() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
   }
 
   async updateArticle() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
   }
 
   async deleteArticle() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
   }
 
   async getAllUserArticles() {
-    return new Promise((resolve) => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        reject('Unauthenticated, please user again!');
-      }
+    const headers: HttpHeaders = this.BaseService.getHeaders(true);
+    const user = await this.authService.getUserId();
+    const url = this.BaseService.getArticleApiUrl() + `/${user}/user/all`;
 
-      if (typeof token === "string") {
-        const decoded: any = jwt_decode(token);
-        resolve(decoded.user.id);
-      }
-    });
+    return this.http.get(url, {headers});
   }
 
   async createArticle(title: string, category: string, description: string, content: string, status: string): Promise<Observable<any>>{
