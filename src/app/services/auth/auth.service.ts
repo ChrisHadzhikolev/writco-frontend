@@ -57,12 +57,8 @@ export class AuthService{
     lastName: string,
     username: string,
     password: string,
-    confirmPassword: string,
     restricted: boolean
-  ): Promise<any> {
-    if (password !== confirmPassword) {
-      throw new Error(`Passwords doesn't match`);
-    }
+  ){
 
     // Make call to users service for register!
     const headers: HttpHeaders = this.BaseService.getHeaders();
@@ -77,14 +73,7 @@ export class AuthService{
       restricted
     };
 
-    await this.http.post(url, user, {headers}).subscribe((res: any) => {
-      if (res) {
-        console.log('Successfully got the user', res);
-        return res;
-      } else {
-        throw new Error('failed to authenticate')
-      }
-    });
+    return this.http.post(url, user, {headers});
   }
 
   async login(email: string, password: string): Promise<Observable<any>>{
