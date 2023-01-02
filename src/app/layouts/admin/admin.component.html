@@ -1,1 +1,15 @@
-<!--<router-outlet></router-outlet>-->
+<div class="toolbar" role="banner">
+  <router-outlet></router-outlet>
+  <img
+    width="40"
+    alt="Writco Logo"
+    src="/assets/logo2.png"
+  />
+  <span>Writco - Amateur Writing Toolset & Community</span>
+  <div class="spacer"></div>
+
+  <button (click)="categories()" mat-button>Categories</button>
+  <button (click)="comments()" mat-button>Comments</button>
+  <button (click)="userManagement()" mat-button>User Management</button>
+  <button mat-button (click)="logout()">Logout</button>
+</div>
