@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit{
     if (this.form.valid) {
       await this.authService.login(this.form.value.email, this.form.value.password).then(res=>{
         res.subscribe(ress=>{
+          localStorage.setItem("token", ress.data.token);
+          this.router.navigate(["/dashboard/basic"]);
           console.log(ress)
         }, err =>{
           if (err.error.statusCode === 400){
